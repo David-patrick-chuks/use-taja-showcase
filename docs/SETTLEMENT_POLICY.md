@@ -4,11 +4,11 @@
 
 This document defines how seller funds should move through Taja after a customer places an order.
 
-It is based on a Jumia-like marketplace model, but adjusted for Taja’s launch strategy and risk controls.
+It is based on a marketplace statement-and-settlement model, adjusted for Taja’s launch strategy and risk controls.
 
 ## Research Summary
 
-Public Jumia VendorHub documentation shows a statement-based settlement model:
+Public marketplace vendor documentation shows a statement-based settlement model:
 
 | Observation | Source Behavior |
 |---|---|
@@ -17,7 +17,7 @@ Public Jumia VendorHub documentation shows a statement-based settlement model:
 | Payouts follow the weekly cycle | Seller funds are released in the next payout run |
 | Return handling affects settlement timing | Disputes and returns can delay or reverse settlement |
 
-Public Jumia return and disputes pages also show that:
+Public marketplace return and dispute pages also show that:
 
 | Observation | Source Behavior |
 |---|---|
@@ -132,9 +132,9 @@ This keeps the model simple, safe, and close to how a real marketplace should op
 
 ## Research References
 
-- Jumia VendorHub account statement documentation
-- Jumia VendorHub return management documentation
-- Jumia VendorHub returns and dispute documentation
+- Public marketplace account statement documentation
+- Public marketplace return management documentation
+- Public marketplace returns and dispute documentation
 
 ## Summary
 

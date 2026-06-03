@@ -78,7 +78,7 @@ The fee system should be easy to understand at launch and flexible enough to gro
 
 ## Research Note
 
-Public Jumia VendorHub pages show a fee stack that includes:
+Public marketplace fee documentation shows a fee stack that includes:
 
 - category-based commission
 - VAT included in commission calculations

@@ -58,7 +58,7 @@ seller_payout = product_price - commission_amount
 
 ## VAT-Inclusive Marketplace Fee Model
 
-Jumia’s public VendorHub commissions page states that VAT increased to 7.5% and that the commission fee is inclusive of VAT. That means the platform fee should be treated as:
+Public marketplace documentation shows a VAT-inclusive commission model. That means the platform fee should be treated as:
 
 ```text
 base_commission = product_price * commission_rate
@@ -119,6 +119,6 @@ The commission model should help Taja earn revenue while remaining clear and pre
 
 Research note:
 
-- Jumia VendorHub publicly states that VAT for goods and services was increased to 7.5%.
-- Its commissions page also states that commission fees are inclusive of VAT.
-- The same page shows a Phones and Tablets example with a 6% base commission and VAT added on top of that commission amount.
+- Public marketplace documentation shows VAT at 7.5% for applicable goods and services.
+- Commission fees can be calculated as VAT-inclusive.
+- Example fee stacks can apply VAT on top of the base commission amount.

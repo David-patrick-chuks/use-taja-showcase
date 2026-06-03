@@ -6,6 +6,7 @@ Start here if you want to understand the product structure.
 
 1. [Project README](../README.md)
 2. [Product Requirements Document](PRD.md)
+3. [Hackathon Goal](HACKATHON_GOAL.md)
 
 ## What This Folder Is For
 
@@ -14,9 +15,10 @@ Start here if you want to understand the product structure.
 - user journeys
 - UX requirements
 - technical constraints
+- hackathon positioning
+- AI-native business goals
 - team alignment
 
 ## Notes
 
 This folder is meant to grow over time as the product gets more detailed.
-

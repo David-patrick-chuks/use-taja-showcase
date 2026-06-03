@@ -12,7 +12,7 @@ use-taja-showcase
 WhatsApp-first commerce platform
 
 ### One-Line Description
-Taja is a commerce system that lets customers shop, sellers manage products, and admins operate the marketplace directly through WhatsApp, with official WhatsApp Cloud API support and web fallback where needed.
+Taja is a commerce system that lets customers shop, sellers manage products, and admins operate the marketplace directly through WhatsApp, with official WhatsApp Cloud API support, web fallback where needed, and multimodal search across text, image, video, and voice note.
 
 ### Executive Summary
 
@@ -36,6 +36,16 @@ Many small and medium businesses struggle with:
 - difficult product and order management
 
 Taja reduces friction by moving the primary commerce journey into WhatsApp, where users already spend time and are comfortable interacting.
+
+### What Makes Taja Different
+
+| Differentiator | What It Means |
+|---|---|
+| Multimodal search | Users can search by text, image, video, or voice note instead of only typing keywords. |
+| WhatsApp-first commerce | Users can browse, buy, and complete forms inside WhatsApp. |
+| Official API support | The production path uses WhatsApp Cloud API features like buttons, lists, and Flows. |
+| AI-assisted discovery | The model service helps the platform understand what users mean, not just what they type. |
+| Low-friction commerce | The experience is designed for people who do not want to install another app or fill long web forms. |
 
 ## 2. Product Vision
 
@@ -86,6 +96,7 @@ The product should feel:
 2. Support official WhatsApp Cloud API features like buttons, lists, and Flows.
 3. Preserve compatibility with legacy provider behavior where needed.
 4. Keep the system modular so each team can work independently.
+5. Make multimodal search a visible product strength so users can search by text, image, video, or voice note.
 
 ## 4. Non-Goals
 

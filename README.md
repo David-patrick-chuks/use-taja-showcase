@@ -23,6 +23,14 @@ Taja is a Yoruba word that means "sell".
 - [docs/NAME_OPTIONS.md](docs/NAME_OPTIONS.md)
 - [docs/UI_UX_NEEDS.md](docs/UI_UX_NEEDS.md)
 - [docs/SOCIAL_COMMUNITY_PLAN.md](docs/SOCIAL_COMMUNITY_PLAN.md)
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- [docs/USER_JOURNEYS.md](docs/USER_JOURNEYS.md)
+- [docs/ADMIN_OPERATIONS.md](docs/ADMIN_OPERATIONS.md)
+- [docs/LOGISTICS_AND_FULFILLMENT.md](docs/LOGISTICS_AND_FULFILLMENT.md)
+- [docs/PAYMENTS_AND_PAYOUTS.md](docs/PAYMENTS_AND_PAYOUTS.md)
+- [docs/TRUST_AND_SAFETY.md](docs/TRUST_AND_SAFETY.md)
+- [docs/BRAND_AND_COMMUNICATION.md](docs/BRAND_AND_COMMUNICATION.md)
+- [docs/COMMISSION_MODEL.md](docs/COMMISSION_MODEL.md)
 
 ## Repo Structure
 
@@ -31,8 +39,16 @@ use-taja-showcase/
 ├── README.md
 └── docs/
     ├── NAME_OPTIONS.md
+    ├── ADMIN_OPERATIONS.md
+    ├── ARCHITECTURE.md
+    ├── BRAND_AND_COMMUNICATION.md
+    ├── COMMISSION_MODEL.md
+    ├── LOGISTICS_AND_FULFILLMENT.md
+    ├── PAYMENTS_AND_PAYOUTS.md
     ├── PRD.md
     ├── SOCIAL_COMMUNITY_PLAN.md
+    ├── TRUST_AND_SAFETY.md
+    ├── USER_JOURNEYS.md
     ├── UI_UX_NEEDS.md
     └── PROJECT_GOAL.md
 ```

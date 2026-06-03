@@ -12,7 +12,7 @@ use-taja-showcase
 WhatsApp-first commerce platform
 
 ### One-Line Description
-Taja is a commerce system that lets customers shop, sellers manage products, and admins operate the marketplace directly through WhatsApp, with official WhatsApp Cloud API support, web fallback where needed, and multimodal search across text, image, video, and voice note.
+Taja is a commerce system that lets customers shop, sellers manage products, and admins operate the marketplace directly through WhatsApp, with official WhatsApp Cloud API support and multimodal search across text, image, video, and voice note.
 
 ### Executive Summary
 
@@ -21,7 +21,7 @@ Taja is a commerce system that lets customers shop, sellers manage products, and
 | Product | Taja |
 | Repository | `use-taja-showcase` |
 | Platform | WhatsApp-first commerce |
-| Provider Strategy | Official WhatsApp Cloud API first, Baileys fallback |
+| Provider Strategy | Official WhatsApp Cloud API only |
 | Model Strategy | Separate multimodal model service for search and intelligence |
 | Business Type | Small-business commerce infrastructure |
 | Primary Users | Customers, sellers, admins, support agents |
@@ -62,7 +62,7 @@ Users should be able to:
 - complete forms
 - receive updates
 
-without leaving WhatsApp unless a fallback is explicitly required.
+without leaving WhatsApp for the core customer and seller journey.
 
 ### Experience Goal
 The product should feel:
@@ -94,9 +94,8 @@ The product should feel:
 
 1. Keep the core user journey inside WhatsApp.
 2. Support official WhatsApp Cloud API features like buttons, lists, and Flows.
-3. Preserve compatibility with legacy provider behavior where needed.
-4. Keep the system modular so each team can work independently.
-5. Make multimodal search a visible product strength so users can search by text, image, video, or voice note.
+3. Keep the system modular so each team can work independently.
+4. Make multimodal search a visible product strength so users can search by text, image, video, or voice note.
 
 ## 4. Non-Goals
 
@@ -236,7 +235,7 @@ Remember user data, session state, and previous choices so users do not repeat t
 1. User opens WhatsApp and starts the bot.
 2. The bot shows onboarding choices.
 3. User chooses customer mode.
-4. The bot launches the signup flow if the official provider is active.
+4. The bot launches the signup flow through the official WhatsApp Flow.
 5. User completes account registration.
 6. The bot shows the customer menu.
 7. User browses products or searches by text, image, video, or voice note.
@@ -273,21 +272,19 @@ The platform must:
 - welcome new users
 - let users choose customer or seller paths
 - provide FAQs and support access
-- launch official WhatsApp Flow signup when available
-- fall back to web-based signup only when official flow is unavailable
+- launch official WhatsApp Flow signup
 
 | Requirement | Description | Priority |
 |---|---|---|
 | Welcome routing | Show first-time user options clearly | High |
 | User type selection | Customer or seller path selection | High |
-| Official signup flow | Use Flow when the official provider is active | High |
-| Web fallback | Only for compatibility or configuration gaps | Medium |
+| Official signup flow | Use Flow for onboarding in WhatsApp | High |
 | Support access | Let users ask for help immediately | High |
 
 #### Acceptance Criteria
 
 - A first-time user sees a clear welcome path.
-- The user can continue without leaving WhatsApp when the official API is available.
+- The user can continue without leaving WhatsApp.
 - The system records user type and session state correctly.
 
 ### 9.2 Customer Browsing
@@ -397,14 +394,14 @@ The platform must:
 
 | Requirement | Description | Priority |
 |---|---|---|
-| Shipping Flow | Collect address in WhatsApp when official provider is active | High |
+| Shipping Flow | Collect address in WhatsApp | High |
 | Rate selection | Let user choose shipping rate | High |
 | Order confirmation | Require a final confirmation step | High |
 | Shipment creation | Create shipment after confirmation | High |
 
 #### Acceptance Criteria
 
-- The user is not forced to leave WhatsApp for shipping address entry when the official provider is active.
+- The user is not forced to leave WhatsApp for shipping address entry.
 - Checkout can be paused and resumed safely.
 - A confirmed order creates the expected backend records.
 
@@ -451,7 +448,7 @@ The platform must:
 
 - Payout form submission updates the seller record.
 - Incomplete payout details are rejected.
-- The seller is not sent to an external web page when official flow is active.
+- The seller is not sent to an external web page.
 
 ### 9.6 Support
 
@@ -640,13 +637,11 @@ When a voice note arrives:
 
 ### Backend
 - must be reliable
-- must support provider switching
 - must separate message handling from business logic
 - must support sessions and persistence
 
 ### Messaging
 - must support official WhatsApp Cloud API
-- should keep Baileys as fallback compatibility
 - must support interactive messages and form flows
 
 ### Operating Model Table
@@ -675,7 +670,7 @@ When a voice note arrives:
 | Backend API | Orders, users, notifications, sessions | Business operations |
 | Model service | Embedding generation and search | Multimodal discovery |
 | Redis | Sessions and cache | Speed and reliability |
-| MongoDB | Persistent business data | Data integrity |
+| Supabase/Postgres | Persistent business data | Data integrity |
 
 ### Storage
 - must support persistent records for users, products, orders, and sessions
@@ -734,7 +729,6 @@ The platform should handle:
 ## 17. Risks And Constraints
 
 ### Risks
-- official WhatsApp features may differ from legacy provider behavior
 - structured flows require careful Meta setup
 - shipping and payment dependencies can fail externally
 - inconsistent session state can confuse users
@@ -743,7 +737,6 @@ The platform should handle:
 - video search can be slower and more expensive than text or image search
 
 ### Constraints
-- some actions are easier in web fallback than in WhatsApp
 - some form logic may need backend validation even if the UI is in WhatsApp
 - international support may require future product decisions
 - model service may require more memory and compute than the chat backend
@@ -791,7 +784,7 @@ The platform should handle:
 ## 19. Milestones
 
 ### Phase 1
-- official WhatsApp provider support
+- official WhatsApp Cloud API support
 - menus, buttons, lists, and Flows
 - user onboarding
 - seller onboarding
@@ -834,7 +827,7 @@ Define clear priorities and keep the journey simple.
 Design for trust, speed, and clarity inside chat.
 
 ### For Engineering
-Keep provider-specific logic isolated and use shared interfaces.
+Keep WhatsApp logic official-API-native and use shared interfaces.
 
 The model service should be treated as a first-class backend system, not a loose helper script.
 The chat backend should call the model service through clear contracts for text, image, video, and voice-note search.
@@ -861,7 +854,7 @@ Monitor webhook reliability, payment events, shipping events, and support volume
 ## 21. Glossary
 
 - **Flow**: A structured form or guided interaction inside WhatsApp.
-- **Provider**: The WhatsApp integration layer, such as official Cloud API or Baileys.
+- **Provider**: The WhatsApp integration layer, which is the official Cloud API for this product.
 - **Session**: The saved state of a user’s current chat journey.
 - **Checkout**: The process of selecting shipping, confirming the order, and completing the purchase.
 - **Payout**: The seller’s settlement or withdrawal details.
@@ -877,7 +870,7 @@ When choosing how to build a new feature, the team should ask:
 
 | Question | If Yes | If No |
 |---|---|---|
-| Can the official WhatsApp API support it? | Build it in WhatsApp first | Consider fallback paths |
+| Can the official WhatsApp API support it? | Build it in WhatsApp first | Use a companion web surface only if absolutely necessary |
 | Is the input structured? | Use a Flow | Use buttons or text |
 | Does the model improve the result? | Route through the model service | Keep it in the backend |
 | Is the action sensitive or important? | Add validation and confirmation | Keep it lightweight |

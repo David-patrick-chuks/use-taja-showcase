@@ -34,6 +34,7 @@ Taja is a Yoruba word that means "sell".
 - [docs/FEES_AND_TAXES.md](docs/FEES_AND_TAXES.md)
 - [docs/SETTLEMENT_POLICY.md](docs/SETTLEMENT_POLICY.md)
 - [docs/RETURNS_AND_REFUNDS.md](docs/RETURNS_AND_REFUNDS.md)
+- [docs/RETURN_LIABILITY_MATRIX.md](docs/RETURN_LIABILITY_MATRIX.md)
 - [docs/SUBSCRIPTION_AND_ADS.md](docs/SUBSCRIPTION_AND_ADS.md)
 - [docs/SELLER_DASHBOARD_METRICS.md](docs/SELLER_DASHBOARD_METRICS.md)
 
@@ -54,6 +55,7 @@ use-taja-showcase/
     ├── PRD.md
     ├── SETTLEMENT_POLICY.md
     ├── RETURNS_AND_REFUNDS.md
+    ├── RETURN_LIABILITY_MATRIX.md
     ├── SOCIAL_COMMUNITY_PLAN.md
     ├── SELLER_DASHBOARD_METRICS.md
     ├── SUBSCRIPTION_AND_ADS.md

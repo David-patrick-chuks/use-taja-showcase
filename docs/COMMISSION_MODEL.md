@@ -19,16 +19,26 @@ This document defines how Taja can charge commission from sellers in a marketpla
 
 | Category | Example Items | Suggested Commission |
 |---|---|---:|
-| Electronics | Phones, accessories, gadgets | 8% |
-| Fashion | Clothing, shoes, bags | 12% |
-| Beauty | Makeup, skincare, hair products | 10% |
-| Home and Kitchen | Appliances, cookware, home goods | 10% |
-| Groceries | Food items, household essentials | 6% |
-| Health | Supplements, wellness items | 8% |
-| Books and Learning | Books, course materials | 5% |
-| Baby and Kids | Baby care, toys, kids items | 9% |
-| Sports and Outdoors | Fitness and outdoor gear | 9% |
-| General Marketplace | Mixed or uncategorized items | 10% |
+| Electronics | Phones, accessories, gadgets | 6% |
+| Fashion | Clothing, shoes, bags | 8% |
+| Beauty | Makeup, skincare, hair products | 7% |
+| Home and Kitchen | Appliances, cookware, home goods | 7% |
+| Groceries | Food items, household essentials | 4% |
+| Health | Supplements, wellness items | 6% |
+| Books and Learning | Books, course materials | 4% |
+| Baby and Kids | Baby care, toys, kids items | 6% |
+| Sports and Outdoors | Fitness and outdoor gear | 6% |
+| General Marketplace | Mixed or uncategorized items | 7% |
+
+## Launch Recommendation
+
+To keep Taja startup-friendly at launch, use lower commission rates first and adjust later based on volume, seller adoption, and category economics.
+
+| Launch Tier | Commission Approach |
+|---|---|
+| Early launch | Keep rates low and easy to explain |
+| Growth phase | Review category performance and margin needs |
+| Mature phase | Adjust rates by category, service cost, and seller segment |
 
 ## Commission Calculation
 
@@ -69,6 +79,16 @@ Example:
 | Seller payout before other deductions | 4,677.50 |
 
 This is the model we should use if we want Taja to behave like a category-based marketplace with a tax-inclusive fee structure.
+
+## Strategic Direction
+
+| Principle | Taja Recommendation |
+|---|---|
+| Keep entry low | Use conservative launch fees to attract sellers |
+| Stay transparent | Show fee breakdowns in seller reports |
+| Reward scale | Consider lower commissions for high-volume or strategic categories |
+| Avoid fee confusion | Separate commission, VAT, shipping, and promotions |
+| Protect trust | Do not introduce hidden charges |
 
 ## Operational Rules
 

@@ -31,6 +31,7 @@ Taja is a Yoruba word that means "sell".
 - [docs/TRUST_AND_SAFETY.md](docs/TRUST_AND_SAFETY.md)
 - [docs/BRAND_AND_COMMUNICATION.md](docs/BRAND_AND_COMMUNICATION.md)
 - [docs/COMMISSION_MODEL.md](docs/COMMISSION_MODEL.md)
+- [docs/FEES_AND_TAXES.md](docs/FEES_AND_TAXES.md)
 
 ## Repo Structure
 
@@ -43,6 +44,7 @@ use-taja-showcase/
     ├── ARCHITECTURE.md
     ├── BRAND_AND_COMMUNICATION.md
     ├── COMMISSION_MODEL.md
+    ├── FEES_AND_TAXES.md
     ├── LOGISTICS_AND_FULFILLMENT.md
     ├── PAYMENTS_AND_PAYOUTS.md
     ├── PRD.md

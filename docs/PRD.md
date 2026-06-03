@@ -145,6 +145,30 @@ People who monitor transactions, shipping, and notifications and need visibility
 - session management
 - media handling
 
+### AI and Search Intelligence
+- image search
+- multi-image search
+- video search
+- voice note search
+- semantic text search
+- product deduplication
+- product similarity ranking
+- trending product scoring
+
+### AI Model Service Role
+The model service is a separate backend component that powers multimodal product discovery and product content intelligence.
+
+It is responsible for:
+
+- generating embeddings for product images
+- understanding text queries semantically
+- extracting representative frames from videos
+- comparing customer uploads with product catalog data
+- supporting hybrid ranking across text and media
+- helping product onboarding detect duplicates or near-duplicates
+
+The model service should be understood by the team as the "search brain" of the platform.
+
 ## 7. Primary Product Principles
 
 ### Principle 1: Stay Inside WhatsApp
@@ -172,7 +196,7 @@ Remember user data, session state, and previous choices so users do not repeat t
 4. The bot launches the signup flow if the official provider is active.
 5. User completes account registration.
 6. The bot shows the customer menu.
-7. User browses products or searches by text/image.
+7. User browses products or searches by text, image, video, or voice note.
 8. User adds items to cart.
 9. User proceeds to checkout.
 10. User submits shipping details through a Flow when supported.
@@ -223,12 +247,65 @@ The platform must:
 - support product browsing and search
 - let users add items to cart
 - maintain cart state across the session
+- support text, image, video, and voice-note search
+- support hybrid ranking when multiple signals are present
+- show useful search results with clear relevance ordering
 
 #### Acceptance Criteria
 
 - A customer can browse products without needing external navigation.
 - Search results remain understandable and actionable.
 - Cart updates are reflected accurately.
+- A customer can send an image, video, or voice note and receive relevant product matches.
+- When both text and media are provided, the search should combine both signals rather than ignoring one.
+
+### 9.2.1 Multimodal Search Requirements
+
+The model-backed search system must support the following modes:
+
+#### Text Search
+- Accept natural language descriptions such as product type, style, size, color, or use case.
+- Map the query semantically to matching products rather than relying only on exact keywords.
+- Support short and long search phrases.
+
+#### Image Search
+- Accept one product image from the user.
+- Generate a visual embedding using the model service.
+- Compare the uploaded image against stored product image embeddings.
+- Return the most visually similar products first.
+
+#### Multi-Image Search
+- Accept multiple images in one search request.
+- Merge similarity signals from the different inputs.
+- Rank products by the strongest and most consistent matches.
+
+#### Video Search
+- Accept a product video or a customer video reference.
+- Extract representative frames from the video.
+- Generate embeddings for the frames.
+- Compare those embeddings against the product catalog.
+- Return products that match the visual content of the video.
+
+#### Voice Note Search
+- Accept a WhatsApp voice note or audio message.
+- Transcribe the audio into text using the speech pipeline.
+- Run the resulting text through the same semantic search engine used for typed queries.
+- If transcription confidence is low, fall back to a clarification prompt instead of returning poor matches.
+
+#### Hybrid Search
+- When text and media are provided together, combine them into one search strategy.
+- Give the most relevant signal more weight depending on the input type.
+- Keep the ranking explainable enough for product and support teams to understand.
+
+#### Search Quality Expectations
+- Results should feel relevant to the user’s intent, not just technically similar.
+- Duplicate or near-duplicate items should be grouped or filtered when appropriate.
+- The top results should be easy to act on from WhatsApp.
+
+#### Search Failure Behavior
+- If a model request fails, the user should receive a clear fallback message.
+- The bot should suggest trying text search, a clearer image, or a shorter voice note.
+- Errors should be logged for engineering and operations review.
 
 ### 9.3 Checkout
 
@@ -342,6 +419,16 @@ Use free text for:
 - support explanations
 - optional notes
 
+### Voice Notes
+Voice notes should be treated as structured input for search or support, not as a dead-end attachment.
+
+When a voice note arrives:
+
+1. detect whether it is intended as search or support
+2. transcribe the audio
+3. continue the journey using the transcript
+4. only ask the user to repeat themselves if the transcription is unusable
+
 ## 11. Information Architecture
 
 ### Main Top-Level Areas
@@ -415,6 +502,23 @@ Use free text for:
 - support logs
 - analytics
 
+### Model Data
+- product image embeddings
+- text embeddings
+- video frame embeddings
+- image hashes
+- similarity scores
+- search metadata
+- duplicate detection metadata
+- trending scores
+
+### Search Input Data
+- text queries
+- image uploads
+- video uploads
+- voice note transcripts
+- hybrid query payloads
+
 ## 14. Platform Requirements
 
 ### Backend
@@ -428,6 +532,14 @@ Use free text for:
 - should keep Baileys as fallback compatibility
 - must support interactive messages and form flows
 
+### Model and Search Platform
+- must support a separate model service for multimodal search
+- must support image, video, and voice-note search inputs
+- must support semantic text search
+- must support product embedding generation and similarity scoring
+- must support duplicate detection and ranking assistance
+- must keep model behavior observable through logs and health checks
+
 ### Storage
 - must support persistent records for users, products, orders, and sessions
 - must retain message history according to the product needs
@@ -435,6 +547,7 @@ Use free text for:
 ### Performance
 - responses should be quick enough for chat UX
 - menus and flow launches should feel immediate
+- search jobs should return results fast enough to feel conversational, with async processing if needed for heavier inputs such as video
 
 ### Security
 - verify webhook authenticity
@@ -460,6 +573,7 @@ Use free text for:
 - log important workflow states
 - make errors diagnosable
 - expose health checks where useful
+- expose model health, embedding health, and search job health where possible
 
 ### Testability
 - critical flows should be testable end-to-end
@@ -487,11 +601,15 @@ The platform should handle:
 - structured flows require careful Meta setup
 - shipping and payment dependencies can fail externally
 - inconsistent session state can confuse users
+- multimodal search quality depends heavily on model tuning and catalog data quality
+- voice-note transcription quality can affect search relevance
+- video search can be slower and more expensive than text or image search
 
 ### Constraints
 - some actions are easier in web fallback than in WhatsApp
 - some form logic may need backend validation even if the UI is in WhatsApp
 - international support may require future product decisions
+- model service may require more memory and compute than the chat backend
 
 ## 18. Success Metrics
 
@@ -502,12 +620,22 @@ The platform should handle:
 - payout update completion rate
 - support resolution rate
 - time to first response
+- text search success rate
+- image search success rate
+- video search success rate
+- voice note search success rate
+- average search-to-click conversion rate
+- search result relevance score
 
 ### Operational Metrics
 - webhook success rate
 - notification delivery success rate
 - API error rate
 - session recovery rate
+- model inference success rate
+- transcription success rate
+- average model response latency
+- duplicate detection accuracy
 
 ### Business Metrics
 - seller activation rate
@@ -523,11 +651,22 @@ The platform should handle:
 - user onboarding
 - seller onboarding
 - checkout shipping flow
+- semantic text search
+- image search through the model service
+
+### Phase 1.5
+- multi-image search
+- video search
+- voice-note search through transcription
+- hybrid ranking between text and media
+- product similarity and deduplication support
 
 ### Phase 2
 - richer support flows
 - deeper admin tooling
 - analytics and reporting improvements
+- search quality tuning and relevance measurement
+- model health and observability dashboards
 
 ### Phase 3
 - optimization, scale, and expansion
@@ -545,8 +684,21 @@ Design for trust, speed, and clarity inside chat.
 ### For Engineering
 Keep provider-specific logic isolated and use shared interfaces.
 
+The model service should be treated as a first-class backend system, not a loose helper script.
+The chat backend should call the model service through clear contracts for text, image, video, and voice-note search.
+
 ### For QA
 Test happy paths, failures, duplicates, and partial completions.
+
+Also test search with:
+
+- one image
+- multiple images
+- one video
+- a voice note
+- mixed text + media
+- no-match results
+- low-confidence transcription
 
 ### For Support
 Document the most common user issues and escalation rules.
@@ -562,10 +714,13 @@ Monitor webhook reliability, payment events, shipping events, and support volume
 - **Checkout**: The process of selecting shipping, confirming the order, and completing the purchase.
 - **Payout**: The seller’s settlement or withdrawal details.
 - **Escalation**: Handing a support issue to a human team member.
+- **CLIP**: A multimodal model used to compare images and text in the same embedding space.
+- **Embedding**: A numeric representation of text, image, or video content used for similarity search.
+- **Hybrid Search**: A search strategy that combines multiple signals, such as text and image, before ranking results.
+- **Voice Note Search**: Search initiated from an audio message that is transcribed and then matched semantically.
 
 ## 22. Final Product Statement
 
 Taja should feel like a full commerce platform hidden inside a simple WhatsApp conversation.
 
 The product wins when users can complete important tasks quickly, safely, and without leaving the app.
-

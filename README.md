@@ -28,6 +28,14 @@ The platform supports:
 - official WhatsApp Cloud API flows for forms and structured actions
 - fallback compatibility for legacy WhatsApp provider behavior
 
+## Name Meaning
+
+Taja is a Yoruba word that means "sell".
+
+That gives the product name a direct connection to commerce, action, and the core business purpose of the platform.
+
+If the team wants to explore future naming options, see [docs/NAME_OPTIONS.md](docs/NAME_OPTIONS.md).
+
 ## Core Principle
 
 The platform should feel simple to use even when the backend is complex.
@@ -52,7 +60,8 @@ That means:
 
 1. Start with [docs/PRD.md](docs/PRD.md) for the full product definition.
 2. Read [docs/PROJECT_GOAL.md](docs/PROJECT_GOAL.md) for the hackathon and business goal.
-3. Use this README as the top-level summary.
+3. Review [docs/NAME_OPTIONS.md](docs/NAME_OPTIONS.md) for alternate brand name ideas.
+4. Use this README as the top-level summary.
 
 ## Repo Structure
 
@@ -60,6 +69,7 @@ That means:
 use-taja-showcase/
 ├── README.md
 └── docs/
+    ├── NAME_OPTIONS.md
     ├── PRD.md
     └── PROJECT_GOAL.md
 ```

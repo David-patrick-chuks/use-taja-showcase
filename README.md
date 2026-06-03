@@ -21,6 +21,7 @@ Taja is a Yoruba word that means "sell".
 - [docs/PRD.md](docs/PRD.md)
 - [docs/PROJECT_GOAL.md](docs/PROJECT_GOAL.md)
 - [docs/NAME_OPTIONS.md](docs/NAME_OPTIONS.md)
+- [docs/UI_UX_NEEDS.md](docs/UI_UX_NEEDS.md)
 
 ## Repo Structure
 
@@ -30,6 +31,7 @@ use-taja-showcase/
 └── docs/
     ├── NAME_OPTIONS.md
     ├── PRD.md
+    ├── UI_UX_NEEDS.md
     └── PROJECT_GOAL.md
 ```
 

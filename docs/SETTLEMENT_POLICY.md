@@ -38,6 +38,16 @@ Instead, it should use a hybrid model:
 | Weekly payout run | Seller balances are paid out on a weekly schedule |
 | Dispute freeze | Settlement is paused if a dispute, refund, or quality issue is open |
 
+## Return Liability Rules
+
+| Scenario | Settlement Impact |
+|---|---|
+| Approved customer return after delivery | Seller account can be debited for the item value |
+| Wrong, fake, or defective product | Seller bears the financial impact unless policy says otherwise |
+| Failed delivery or customer refusal | Item returns to seller inventory flow |
+| Marketplace loses the return or misses the return SLA | Marketplace compensates the seller according to policy |
+| Return approved and processed successfully | Settlement may be reversed, offset, or withheld from payout balance |
+
 ## Recommended Settlement Model
 
 | Event | System Action |
@@ -110,6 +120,7 @@ Instead, it should use a hybrid model:
 | Admin control | Support and finance should be able to freeze or release cases where appropriate |
 | Clear reporting | Seller dashboards should show held, due, and paid balances |
 | Consistent timing | Payout timing should be predictable and documented |
+| Return accountability | The party responsible for the return outcome should bear the financial impact |
 
 ## What Not To Do
 

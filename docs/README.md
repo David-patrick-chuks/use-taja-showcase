@@ -6,7 +6,7 @@ Start here if you want to understand the product structure.
 
 1. [Project README](../README.md)
 2. [Product Requirements Document](PRD.md)
-3. [Hackathon Goal](HACKATHON_GOAL.md)
+3. [Project Goal](PROJECT_GOAL.md)
 
 ## What This Folder Is For
 

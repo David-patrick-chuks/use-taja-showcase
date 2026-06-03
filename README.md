@@ -13,6 +13,7 @@ This repo is intentionally lightweight. It is meant to help any team member, whe
 ## What You’ll Find Here
 
 - A full product requirement document in [docs/PRD.md](docs/PRD.md)
+- A project goal document in [docs/PROJECT_GOAL.md](docs/PROJECT_GOAL.md)
 - A simple docs structure that can grow with the project
 - A shared product language for all team members
 
@@ -60,7 +61,9 @@ That means:
 use-taja-showcase/
 ├── README.md
 └── docs/
-    └── PRD.md
+    ├── PRD.md
+    ├── PROJECT_GOAL.md
+    └── README.md
 ```
 
 ## Current Scope
@@ -72,4 +75,3 @@ The implementation lives in the separate project repos for backend, web, model, 
 ## Short Version
 
 Taja is a WhatsApp-native commerce platform for shopping, selling, support, and operations.
-

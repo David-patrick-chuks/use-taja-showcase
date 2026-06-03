@@ -14,6 +14,18 @@ WhatsApp-first commerce platform
 ### One-Line Description
 Taja is a commerce system that lets customers shop, sellers manage products, and admins operate the marketplace directly through WhatsApp, with official WhatsApp Cloud API support and web fallback where needed.
 
+### Executive Summary
+
+| Field | Details |
+|---|---|
+| Product | Taja |
+| Repository | `use-taja-showcase` |
+| Platform | WhatsApp-first commerce |
+| Provider Strategy | Official WhatsApp Cloud API first, Baileys fallback |
+| Model Strategy | Separate multimodal model service for search and intelligence |
+| Business Type | Small-business commerce infrastructure |
+| Primary Users | Customers, sellers, admins, support agents |
+
 ### Why This Product Exists
 Many small and medium businesses struggle with:
 
@@ -145,6 +157,26 @@ People who monitor transactions, shipping, and notifications and need visibility
 - session management
 - media handling
 
+### Product System Map
+
+```mermaid
+flowchart TD
+    A[WhatsApp User] --> B[Official WhatsApp Cloud API]
+    B --> C[Conversation Flow Layer]
+    C --> D[Business Backend]
+    D --> E[Orders]
+    D --> F[Users]
+    D --> G[Payments]
+    D --> H[Shipping]
+    D --> I[Notifications]
+    D --> J[Admin Tools]
+    C --> K[Model Service]
+    K --> L[Text Search]
+    K --> M[Image Search]
+    K --> N[Video Search]
+    K --> O[Voice Note Search]
+```
+
 ### AI and Search Intelligence
 - image search
 - multi-image search
@@ -233,6 +265,14 @@ The platform must:
 - launch official WhatsApp Flow signup when available
 - fall back to web-based signup only when official flow is unavailable
 
+| Requirement | Description | Priority |
+|---|---|---|
+| Welcome routing | Show first-time user options clearly | High |
+| User type selection | Customer or seller path selection | High |
+| Official signup flow | Use Flow when the official provider is active | High |
+| Web fallback | Only for compatibility or configuration gaps | Medium |
+| Support access | Let users ask for help immediately | High |
+
 #### Acceptance Criteria
 
 - A first-time user sees a clear welcome path.
@@ -251,6 +291,14 @@ The platform must:
 - support hybrid ranking when multiple signals are present
 - show useful search results with clear relevance ordering
 
+| Requirement | Description | Priority |
+|---|---|---|
+| Menu-based browsing | Use buttons/lists where possible | High |
+| Multimodal search | Support text, image, video, and voice note | High |
+| Hybrid ranking | Combine multiple input signals | High |
+| Cart persistence | Maintain cart across the session | High |
+| Relevance display | Show results in meaningful order | High |
+
 #### Acceptance Criteria
 
 - A customer can browse products without needing external navigation.
@@ -260,6 +308,15 @@ The platform must:
 - When both text and media are provided, the search should combine both signals rather than ignoring one.
 
 ### 9.2.1 Multimodal Search Requirements
+
+| Search Mode | Input | Model Role | Output |
+|---|---|---|---|
+| Text Search | Typed query | Semantic embedding and ranking | Ranked product list |
+| Image Search | One product image | CLIP-style image similarity | Visually similar products |
+| Multi-Image Search | Multiple images | Merge and compare multiple embeddings | Strongest matching products |
+| Video Search | Video upload | Frame extraction and frame comparison | Products matching the video content |
+| Voice Note Search | Audio message | Speech-to-text plus semantic matching | Ranked products or clarification prompt |
+| Hybrid Search | Text plus media | Weighted combination of signals | Best overall match set |
 
 The model-backed search system must support the following modes:
 
@@ -307,6 +364,16 @@ The model-backed search system must support the following modes:
 - The bot should suggest trying text search, a clearer image, or a shorter voice note.
 - Errors should be logged for engineering and operations review.
 
+#### Search Experience Quality
+
+| Quality Aspect | Expected Behavior |
+|---|---|
+| Relevance | Top results should match user intent closely |
+| Confidence | If confidence is low, the system should ask for clarification |
+| Speed | Search should feel conversational |
+| Explainability | Support and product teams should understand why results were returned |
+| Robustness | Duplicate and near-duplicate items should be handled cleanly |
+
 ### 9.3 Checkout
 
 The platform must:
@@ -316,6 +383,13 @@ The platform must:
 - allow rate selection
 - confirm order before finalization
 - create shipment records after confirmation
+
+| Requirement | Description | Priority |
+|---|---|---|
+| Shipping Flow | Collect address in WhatsApp when official provider is active | High |
+| Rate selection | Let user choose shipping rate | High |
+| Order confirmation | Require a final confirmation step | High |
+| Shipment creation | Create shipment after confirmation | High |
 
 #### Acceptance Criteria
 
@@ -333,6 +407,14 @@ The platform must:
 - allow product removal or cancellation
 - provide product preview and confirmation actions
 
+| Requirement | Description | Priority |
+|---|---|---|
+| Product capture | Guided input for images and metadata | High |
+| Edit flow | Allow edits before publishing | High |
+| Cancellation | Allow sellers to stop a product upload | Medium |
+| Validation | Prevent incomplete or invalid product records | High |
+| Preview step | Show sellers what will be published | High |
+
 #### Acceptance Criteria
 
 - Product creation follows a predictable flow.
@@ -346,6 +428,13 @@ The platform must:
 - let sellers update payout details through WhatsApp Flows when supported
 - store bank account information securely
 - expose payout status through the backend and admin tooling
+
+| Requirement | Description | Priority |
+|---|---|---|
+| Payout Flow | Use WhatsApp Flow when available | High |
+| Secure storage | Store payout details safely | High |
+| Validation | Reject incomplete payout details | High |
+| Visibility | Allow admin and seller status checks | Medium |
 
 #### Acceptance Criteria
 
@@ -361,6 +450,13 @@ The platform must:
 - escalate urgent cases
 - keep support context across a reasonable conversation window
 - support a form-based intake for structured support requests
+
+| Requirement | Description | Priority |
+|---|---|---|
+| AI triage | Sort issues before human escalation | High |
+| Conversation memory | Keep enough history to remain useful | High |
+| Support flow | Structured support intake through WhatsApp Flow | Medium |
+| Human escalation | Hand off urgent issues quickly | High |
 
 #### Acceptance Criteria
 
@@ -428,6 +524,16 @@ When a voice note arrives:
 2. transcribe the audio
 3. continue the journey using the transcript
 4. only ask the user to repeat themselves if the transcription is unusable
+
+### Interaction Priority Table
+
+| Interaction Type | Best Use | Notes |
+|---|---|---|
+| Button | 2-3 clear choices | Fastest decision path |
+| List | Several related choices | Good for menus and categories |
+| Flow | Structured form input | Best for signup, shipping, payouts, support |
+| Text | Open-ended input | Use for search, notes, and explanation |
+| Voice | Rich intent or support | Transcribe before processing |
 
 ## 11. Information Architecture
 
@@ -532,6 +638,16 @@ When a voice note arrives:
 - should keep Baileys as fallback compatibility
 - must support interactive messages and form flows
 
+### Operating Model Table
+
+| Layer | Responsibility | Example |
+|---|---|---|
+| Chat layer | User interaction and session routing | WhatsApp menus and Flows |
+| Business backend | Orders, users, payments, shipping | Checkout and seller operations |
+| Model service | Visual and semantic intelligence | Image, video, and voice-note search |
+| Admin layer | Moderation and reporting | Approvals and analytics |
+| Evidence layer | Logs and business proof | AI logs, receipts, customer data |
+
 ### Model and Search Platform
 - must support a separate model service for multimodal search
 - must support image, video, and voice-note search inputs
@@ -539,6 +655,16 @@ When a voice note arrives:
 - must support product embedding generation and similarity scoring
 - must support duplicate detection and ranking assistance
 - must keep model behavior observable through logs and health checks
+
+### System Health Table
+
+| Service | What Must Be Healthy | Why It Matters |
+|---|---|---|
+| WhatsApp API | Webhooks, messages, interactive actions | Core user interface |
+| Backend API | Orders, users, notifications, sessions | Business operations |
+| Model service | Embedding generation and search | Multimodal discovery |
+| Redis | Sessions and cache | Speed and reliability |
+| MongoDB | Persistent business data | Data integrity |
 
 ### Storage
 - must support persistent records for users, products, orders, and sessions
@@ -637,6 +763,14 @@ The platform should handle:
 - average model response latency
 - duplicate detection accuracy
 
+| Metric Group | Target Direction |
+|---|---|
+| Search relevance | Increase over time |
+| User completion rate | Increase over time |
+| Support resolution | Increase over time |
+| Model latency | Decrease over time |
+| Manual intervention | Decrease over time |
+
 ### Business Metrics
 - seller activation rate
 - repeat purchase rate
@@ -653,6 +787,13 @@ The platform should handle:
 - checkout shipping flow
 - semantic text search
 - image search through the model service
+
+| Phase | Deliverable | Outcome |
+|---|---|---|
+| 1 | Core WhatsApp commerce flow | Users can complete key journeys |
+| 1.5 | Multimodal search expansion | Users can search with media |
+| 2 | Operational tooling and tuning | Team can manage and improve quality |
+| 3 | Growth and scale improvements | Business can continue beyond the hackathon |
 
 ### Phase 1.5
 - multi-image search
@@ -719,7 +860,19 @@ Monitor webhook reliability, payment events, shipping events, and support volume
 - **Hybrid Search**: A search strategy that combines multiple signals, such as text and image, before ranking results.
 - **Voice Note Search**: Search initiated from an audio message that is transcribed and then matched semantically.
 
-## 22. Final Product Statement
+## 22. Decision Framework
+
+When choosing how to build a new feature, the team should ask:
+
+| Question | If Yes | If No |
+|---|---|---|
+| Can the official WhatsApp API support it? | Build it in WhatsApp first | Consider fallback paths |
+| Is the input structured? | Use a Flow | Use buttons or text |
+| Does the model improve the result? | Route through the model service | Keep it in the backend |
+| Is the action sensitive or important? | Add validation and confirmation | Keep it lightweight |
+| Will humans still need to review it? | Add escalation and audit logs | Automate if safe |
+
+## 23. Final Product Statement
 
 Taja should feel like a full commerce platform hidden inside a simple WhatsApp conversation.
 

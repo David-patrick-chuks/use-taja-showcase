@@ -14,7 +14,6 @@ This repo is intentionally lightweight. It is meant to help any team member, whe
 
 - A full product requirement document in [docs/PRD.md](docs/PRD.md)
 - A project goal document in [docs/PROJECT_GOAL.md](docs/PROJECT_GOAL.md)
-- A simple docs structure that can grow with the project
 - A shared product language for all team members
 
 ## Product Summary
@@ -52,8 +51,8 @@ That means:
 ## How To Use This Repo
 
 1. Start with [docs/PRD.md](docs/PRD.md) for the full product definition.
-2. Use this README as the top-level summary.
-3. Add future documents under `docs/` as the product grows.
+2. Read [docs/PROJECT_GOAL.md](docs/PROJECT_GOAL.md) for the hackathon and business goal.
+3. Use this README as the top-level summary.
 
 ## Repo Structure
 
@@ -62,8 +61,7 @@ use-taja-showcase/
 ├── README.md
 └── docs/
     ├── PRD.md
-    ├── PROJECT_GOAL.md
-    └── README.md
+    └── PROJECT_GOAL.md
 ```
 
 ## Current Scope

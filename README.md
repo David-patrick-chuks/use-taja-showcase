@@ -1,28 +1,75 @@
-# use-taja
+# use-taja-showcase
 
-use-taja is a WhatsApp-first commerce platform built to help customers shop, sellers manage products, and admins run the marketplace from one connected system.
+`use-taja-showcase` is the public product reference for **Taja**, a WhatsApp-first commerce platform that lets customers shop, sellers manage inventory, and admins run the marketplace from one connected system.
 
-## What it does
+This repo is intentionally lightweight. It is meant to help any team member, whether they work in engineering, product, design, operations, or support, understand:
 
-- Customer shopping, cart, checkout, and order tracking inside WhatsApp
-- Seller onboarding, product management, payout setup, and sales reporting
-- Admin controls for moderation, analytics, notifications, and support
-- Official WhatsApp Cloud API support with buttons, lists, and Flows
-- Legacy Baileys support kept as a fallback for compatibility
+- what the product is
+- who it is for
+- what the experience should feel like
+- what must be built first
+- how success is measured
 
-## Core stack
+## What You’ll Find Here
 
-- Backend: Node.js, Express, TypeScript, MongoDB, Redis
-- Messaging: WhatsApp Cloud API, Baileys fallback
-- Payments: Paystack
-- Shipping: Shipbubble
-- AI: product search and support automation
+- A full product requirement document in [docs/PRD.md](docs/PRD.md)
+- A simple docs structure that can grow with the project
+- A shared product language for all team members
 
-## Project focus
+## Product Summary
 
-The goal is simple: keep the entire commerce journey inside WhatsApp as much as possible, while still supporting a web fallback where needed.
+Taja is a commerce platform designed to keep the main customer journey inside WhatsApp.
 
-## Current status
+The platform supports:
 
-This repo exists as a compact project overview and public showcase for the larger Commerce Bridge / Taja platform.
+- customer browsing, cart, checkout, and tracking
+- seller onboarding, product management, and payouts
+- admin moderation, analytics, and support tooling
+- official WhatsApp Cloud API flows for forms and structured actions
+- fallback compatibility for legacy WhatsApp provider behavior
+
+## Core Principle
+
+The platform should feel simple to use even when the backend is complex.
+
+That means:
+
+- fewer app switches
+- clearer menus and guided actions
+- structured forms for sensitive or repetitive input
+- fast support for customers and sellers
+- reliable admin controls behind the scenes
+
+## Who This Repo Is For
+
+- Product managers who need the full feature scope
+- UI and UX designers who need the user journey and interaction model
+- Backend developers who need system requirements and constraints
+- QA testers who need acceptance criteria and edge cases
+- Operations and support teams who need to understand how the product works
+
+## How To Use This Repo
+
+1. Start with [docs/PRD.md](docs/PRD.md) for the full product definition.
+2. Use this README as the top-level summary.
+3. Add future documents under `docs/` as the product grows.
+
+## Repo Structure
+
+```text
+use-taja-showcase/
+├── README.md
+└── docs/
+    └── PRD.md
+```
+
+## Current Scope
+
+This repo documents the product. It does not contain the full application source code.
+
+The implementation lives in the separate project repos for backend, web, model, and landing page.
+
+## Short Version
+
+Taja is a WhatsApp-native commerce platform for shopping, selling, support, and operations.
 

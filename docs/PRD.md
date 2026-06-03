@@ -1,0 +1,571 @@
+# Product Requirements Document
+
+## 1. Product Overview
+
+### Product Name
+Taja
+
+### Repository Name
+use-taja-showcase
+
+### Product Type
+WhatsApp-first commerce platform
+
+### One-Line Description
+Taja is a commerce system that lets customers shop, sellers manage products, and admins operate the marketplace directly through WhatsApp, with official WhatsApp Cloud API support and web fallback where needed.
+
+### Why This Product Exists
+Many small and medium businesses struggle with:
+
+- complicated e-commerce setup
+- low conversion from app downloads and web forms
+- fragmented support channels
+- manual seller onboarding
+- difficult product and order management
+
+Taja reduces friction by moving the primary commerce journey into WhatsApp, where users already spend time and are comfortable interacting.
+
+## 2. Product Vision
+
+### Vision Statement
+Build a commerce platform that feels as easy as chatting, but works like a full marketplace.
+
+### Product Promise
+Users should be able to:
+
+- discover products
+- ask questions
+- place orders
+- manage products
+- complete forms
+- receive updates
+
+without leaving WhatsApp unless a fallback is explicitly required.
+
+### Experience Goal
+The product should feel:
+
+- simple
+- guided
+- trustworthy
+- fast
+- familiar
+- accessible to non-technical users
+
+## 3. Product Goals
+
+### Business Goals
+
+1. Increase conversion by reducing friction in shopping and onboarding.
+2. Make seller setup easier so more sellers can join and list products.
+3. Reduce support workload through automation and self-service flows.
+4. Improve order completion with integrated payments, shipping, and notifications.
+5. Create a scalable marketplace operation layer for admins.
+
+### User Goals
+
+1. Customers should find and buy products quickly.
+2. Sellers should onboard and manage listings without confusion.
+3. Admins should be able to moderate, monitor, and support the platform efficiently.
+
+### Product Goals
+
+1. Keep the core user journey inside WhatsApp.
+2. Support official WhatsApp Cloud API features like buttons, lists, and Flows.
+3. Preserve compatibility with legacy provider behavior where needed.
+4. Keep the system modular so each team can work independently.
+
+## 4. Non-Goals
+
+The following are not the primary focus of this product:
+
+- building a general-purpose social network
+- replacing a full web storefront entirely
+- supporting every country and every payment rail on day one
+- building custom enterprise ERP software
+- making all workflows text-only
+
+## 5. Target Users
+
+### Customer
+People who want to browse, ask questions, add to cart, pay, and track orders in WhatsApp.
+
+### Seller
+People or small businesses who want to upload products, manage stock, view orders, and handle payouts.
+
+### Admin
+People who manage approvals, moderation, support escalation, analytics, shipping, and platform health.
+
+### Support Agent
+People who resolve customer or seller issues and handle escalations.
+
+### Operations Team
+People who monitor transactions, shipping, and notifications and need visibility into platform health.
+
+## 6. Core Product Areas
+
+### Customer Experience
+- onboarding
+- browsing
+- search
+- cart management
+- checkout
+- shipping
+- payment status
+- order tracking
+- support
+
+### Seller Experience
+- onboarding
+- product creation
+- product editing
+- inventory management
+- order handling
+- sales reporting
+- payout setup
+- seller support
+
+### Admin Experience
+- user management
+- seller verification
+- content moderation
+- product approval
+- broadcast messaging
+- analytics
+- shipping monitoring
+- withdrawal review
+- support oversight
+
+### Platform Services
+- WhatsApp messaging
+- payment processing
+- shipping integration
+- notifications
+- AI-assisted search and support
+- session management
+- media handling
+
+## 7. Primary Product Principles
+
+### Principle 1: Stay Inside WhatsApp
+If the official WhatsApp API supports a form, menu, or interactive action, use it before sending users outside the app.
+
+### Principle 2: Use Guided Interaction
+Prefer buttons, lists, and structured forms over long text prompts when the user is choosing or submitting structured information.
+
+### Principle 3: Keep Text for Freeform Input
+Use plain text only when the user genuinely needs to type open-ended information, such as support details or custom notes.
+
+### Principle 4: Be Clear and Friendly
+Every screen, prompt, and message should be understandable by a non-technical user.
+
+### Principle 5: Reduce Repeat Work
+Remember user data, session state, and previous choices so users do not repeat themselves unnecessarily.
+
+## 8. User Journeys
+
+### 8.1 Customer Journey
+
+1. User opens WhatsApp and starts the bot.
+2. The bot shows onboarding choices.
+3. User chooses customer mode.
+4. The bot launches the signup flow if the official provider is active.
+5. User completes account registration.
+6. The bot shows the customer menu.
+7. User browses products or searches by text/image.
+8. User adds items to cart.
+9. User proceeds to checkout.
+10. User submits shipping details through a Flow when supported.
+11. User confirms order.
+12. User receives order and shipment updates.
+
+### 8.2 Seller Journey
+
+1. User opens the bot and selects seller mode.
+2. The bot launches the seller signup flow.
+3. Seller creates or updates a profile.
+4. Seller uploads products with guided prompts.
+5. Seller manages inventory, orders, and reports.
+6. Seller updates payout details using a Flow.
+7. Seller receives sales and order notifications.
+
+### 8.3 Admin Journey
+
+1. Admin logs into the admin panel.
+2. Admin reviews users, sellers, products, and orders.
+3. Admin approves or rejects content when needed.
+4. Admin sends broadcasts or system updates.
+5. Admin monitors support, shipping, and withdrawals.
+
+## 9. Functional Requirements
+
+### 9.1 Onboarding
+
+The platform must:
+
+- welcome new users
+- let users choose customer or seller paths
+- provide FAQs and support access
+- launch official WhatsApp Flow signup when available
+- fall back to web-based signup only when official flow is unavailable
+
+#### Acceptance Criteria
+
+- A first-time user sees a clear welcome path.
+- The user can continue without leaving WhatsApp when the official API is available.
+- The system records user type and session state correctly.
+
+### 9.2 Customer Browsing
+
+The platform must:
+
+- present customer menus using interactive WhatsApp controls where available
+- support product browsing and search
+- let users add items to cart
+- maintain cart state across the session
+
+#### Acceptance Criteria
+
+- A customer can browse products without needing external navigation.
+- Search results remain understandable and actionable.
+- Cart updates are reflected accurately.
+
+### 9.3 Checkout
+
+The platform must:
+
+- collect shipping details through WhatsApp Flows when supported
+- fetch shipping rates
+- allow rate selection
+- confirm order before finalization
+- create shipment records after confirmation
+
+#### Acceptance Criteria
+
+- The user is not forced to leave WhatsApp for shipping address entry when the official provider is active.
+- Checkout can be paused and resumed safely.
+- A confirmed order creates the expected backend records.
+
+### 9.4 Seller Product Management
+
+The platform must:
+
+- guide sellers through product creation
+- support images and product metadata
+- allow editing of existing products
+- allow product removal or cancellation
+- provide product preview and confirmation actions
+
+#### Acceptance Criteria
+
+- Product creation follows a predictable flow.
+- The seller can confirm, edit, or cancel before publishing.
+- Validation prevents incomplete product submissions.
+
+### 9.5 Seller Payouts
+
+The platform must:
+
+- let sellers update payout details through WhatsApp Flows when supported
+- store bank account information securely
+- expose payout status through the backend and admin tooling
+
+#### Acceptance Criteria
+
+- Payout form submission updates the seller record.
+- Incomplete payout details are rejected.
+- The seller is not sent to an external web page when official flow is active.
+
+### 9.6 Support
+
+The platform must:
+
+- offer automated support responses
+- escalate urgent cases
+- keep support context across a reasonable conversation window
+- support a form-based intake for structured support requests
+
+#### Acceptance Criteria
+
+- A user can ask a question and get a response without losing context.
+- Urgent issues are flagged for human escalation.
+- Support can continue inside WhatsApp with structured flows when available.
+
+### 9.7 Notifications
+
+The platform must:
+
+- notify users about orders, shipping, and support updates
+- notify sellers about new orders and important business events
+- support broadcast and system notifications from admin tools
+
+#### Acceptance Criteria
+
+- Notification delivery is recorded.
+- Failures are visible in logs or admin views.
+
+### 9.8 Admin Controls
+
+The platform must:
+
+- allow admins to view platform metrics
+- approve or reject relevant content
+- manage users, sellers, couriers, and categories
+- view reports and withdrawals
+
+#### Acceptance Criteria
+
+- Admin actions are permission-checked.
+- Actions are auditable.
+
+## 10. WhatsApp Interaction Rules
+
+### Buttons
+Use buttons when the user has a small number of clear decisions.
+
+### Lists
+Use lists when the user needs to pick from several related options or categories.
+
+### Flows
+Use WhatsApp Flows for forms that collect structured data such as:
+
+- signup
+- shipping address
+- payout details
+- support intake
+
+### Text
+Use free text for:
+
+- custom questions
+- product search
+- support explanations
+- optional notes
+
+## 11. Information Architecture
+
+### Main Top-Level Areas
+
+1. Customer
+2. Seller
+3. Support
+4. Admin
+5. Notifications
+6. Payments
+7. Shipping
+
+### Session Concepts
+
+- user type
+- current state
+- step within a flow
+- active cart
+- shipping details
+- selected product or order
+- support context
+
+## 12. UX Requirements
+
+### Tone
+- friendly
+- concise
+- human
+- reassuring
+- clear
+
+### Layout in WhatsApp
+- start with the action the user should take
+- keep instructions short
+- avoid long paragraphs where buttons or flows are better
+- always provide a way to go back
+
+### Accessibility
+- use simple language
+- avoid jargon
+- keep interactions predictable
+- support users with limited digital literacy
+
+### Error Handling
+- explain what went wrong
+- tell the user what to do next
+- keep them in the flow when possible
+
+## 13. Data Requirements
+
+### Customer Data
+- phone number
+- name
+- email
+- account status
+- cart data
+- order history
+- shipping address
+
+### Seller Data
+- business name
+- payout details
+- product listings
+- sales data
+- order handling data
+
+### Admin Data
+- permissions
+- approval history
+- broadcast history
+- support logs
+- analytics
+
+## 14. Platform Requirements
+
+### Backend
+- must be reliable
+- must support provider switching
+- must separate message handling from business logic
+- must support sessions and persistence
+
+### Messaging
+- must support official WhatsApp Cloud API
+- should keep Baileys as fallback compatibility
+- must support interactive messages and form flows
+
+### Storage
+- must support persistent records for users, products, orders, and sessions
+- must retain message history according to the product needs
+
+### Performance
+- responses should be quick enough for chat UX
+- menus and flow launches should feel immediate
+
+### Security
+- verify webhook authenticity
+- protect secrets in environment variables
+- enforce permissions for admin routes
+- avoid exposing payout or user data to unauthorized users
+
+## 15. Non-Functional Requirements
+
+### Reliability
+- minimize downtime
+- recover from transient failures
+- keep sessions safe during restarts
+
+### Scalability
+- support more users without reworking the core flow model
+
+### Maintainability
+- keep modules separated by concern
+- use provider-neutral interfaces where possible
+
+### Observability
+- log important workflow states
+- make errors diagnosable
+- expose health checks where useful
+
+### Testability
+- critical flows should be testable end-to-end
+- acceptance criteria should map to test cases
+
+## 16. Edge Cases
+
+The platform should handle:
+
+- user returns after a timeout
+- user sends unexpected text instead of choosing a button
+- webhook retries and duplicate messages
+- interrupted Flow submission
+- missing user records
+- missing payout information
+- unsupported or invalid shipping data
+- payment failure
+- shipping API failure
+- support escalation
+
+## 17. Risks And Constraints
+
+### Risks
+- official WhatsApp features may differ from legacy provider behavior
+- structured flows require careful Meta setup
+- shipping and payment dependencies can fail externally
+- inconsistent session state can confuse users
+
+### Constraints
+- some actions are easier in web fallback than in WhatsApp
+- some form logic may need backend validation even if the UI is in WhatsApp
+- international support may require future product decisions
+
+## 18. Success Metrics
+
+### Product Metrics
+- signup completion rate
+- cart-to-checkout conversion rate
+- order completion rate
+- payout update completion rate
+- support resolution rate
+- time to first response
+
+### Operational Metrics
+- webhook success rate
+- notification delivery success rate
+- API error rate
+- session recovery rate
+
+### Business Metrics
+- seller activation rate
+- repeat purchase rate
+- abandoned cart reduction
+- support ticket reduction
+
+## 19. Milestones
+
+### Phase 1
+- official WhatsApp provider support
+- menus, buttons, lists, and Flows
+- user onboarding
+- seller onboarding
+- checkout shipping flow
+
+### Phase 2
+- richer support flows
+- deeper admin tooling
+- analytics and reporting improvements
+
+### Phase 3
+- optimization, scale, and expansion
+- additional countries or business rules
+- richer automation
+
+## 20. Team Notes
+
+### For Product
+Define clear priorities and keep the journey simple.
+
+### For Design
+Design for trust, speed, and clarity inside chat.
+
+### For Engineering
+Keep provider-specific logic isolated and use shared interfaces.
+
+### For QA
+Test happy paths, failures, duplicates, and partial completions.
+
+### For Support
+Document the most common user issues and escalation rules.
+
+### For Operations
+Monitor webhook reliability, payment events, shipping events, and support volume.
+
+## 21. Glossary
+
+- **Flow**: A structured form or guided interaction inside WhatsApp.
+- **Provider**: The WhatsApp integration layer, such as official Cloud API or Baileys.
+- **Session**: The saved state of a user’s current chat journey.
+- **Checkout**: The process of selecting shipping, confirming the order, and completing the purchase.
+- **Payout**: The seller’s settlement or withdrawal details.
+- **Escalation**: Handing a support issue to a human team member.
+
+## 22. Final Product Statement
+
+Taja should feel like a full commerce platform hidden inside a simple WhatsApp conversation.
+
+The product wins when users can complete important tasks quickly, safely, and without leaving the app.
+

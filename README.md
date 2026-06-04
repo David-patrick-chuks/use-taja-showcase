@@ -25,6 +25,7 @@ Taja is a Yoruba word that means "sell".
 - [docs/SOCIAL_COMMUNITY_PLAN.md](docs/SOCIAL_COMMUNITY_PLAN.md)
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - [docs/USER_JOURNEYS.md](docs/USER_JOURNEYS.md)
+- [docs/USER_FLOWS_AND_MESSAGES.md](docs/USER_FLOWS_AND_MESSAGES.md)
 - [docs/ADMIN_OPERATIONS.md](docs/ADMIN_OPERATIONS.md)
 - [docs/LOGISTICS_AND_FULFILLMENT.md](docs/LOGISTICS_AND_FULFILLMENT.md)
 - [docs/PAYMENTS_AND_PAYOUTS.md](docs/PAYMENTS_AND_PAYOUTS.md)
@@ -65,6 +66,7 @@ use-taja-showcase/
     ├── SUBSCRIPTION_AND_ADS.md
     ├── TRUST_AND_SAFETY.md
     ├── USER_JOURNEYS.md
+    ├── USER_FLOWS_AND_MESSAGES.md
     ├── UI_UX_NEEDS.md
     └── PROJECT_GOAL.md
 ```

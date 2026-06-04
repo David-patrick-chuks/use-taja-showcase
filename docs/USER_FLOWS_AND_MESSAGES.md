@@ -512,3 +512,331 @@ Bot: payout flow or payout update link
 - Admin approval actually triggers payout transfer.
 - Return flow updates refund and payout states correctly.
 
+## 11. Exact Message Library
+
+This section lists the exact live bot text snippets that appear in the codebase today.
+
+### 11.1 Customer Search and Discovery
+
+```text
+🔍 Product Search
+
+What are you looking for? Please describe the product you want to find.
+
+You can search in multiple ways:
+• Text Search: Type your search query
+• Image Search: Send a photo of the product
+• Video Search: Send a video of the product
+• Image + Text: Send a photo with a caption
+
+Type your search, send an image/video, or "back" to return to menu.
+```
+
+```text
+🔥 Trending Products:
+```
+
+```text
+📋 All Search Results
+```
+
+```text
+🛒 Add to Cart
+```
+
+```text
+📝 How many would you like?
+```
+
+```text
+✅ Added to Cart
+```
+
+```text
+✅ Quantity Updated
+```
+
+```text
+🔙 Back to Products
+```
+
+### 11.2 Customer Cart
+
+```text
+Cart Actions
+```
+
+```text
+Checkout
+```
+
+```text
+Update Quantities
+```
+
+```text
+Add More Products
+```
+
+```text
+Clear Cart
+```
+
+```text
+Back
+```
+
+### 11.3 Customer Orders and Tracking
+
+```text
+📋 No Orders Yet
+```
+
+```text
+📋 Your Order History
+```
+
+```text
+📦 Package Tracking
+```
+
+```text
+  Tracking Not Found
+```
+
+```text
+  Tracking Error
+```
+
+### 11.4 Customer Returns
+
+```text
+🔁 Return Request
+```
+
+```text
+📝 Return reason
+```
+
+```text
+✅ Return request submitted
+```
+
+```text
+  Return request failed
+```
+
+### 11.5 Customer Help
+
+```text
+🛟 Contact Support
+```
+
+```text
+🛒 How to order on Taja
+```
+
+```text
+📦 Track your order
+```
+
+```text
+🗂️ Product Categories
+```
+
+```text
+💳 Payments
+```
+
+```text
+🚚 Delivery & Shipping
+```
+
+```text
+🔁 Returns & Refunds
+```
+
+```text
+🏷️ Discounts & Promotions
+```
+
+```text
+🕒 Store & Support Hours
+```
+
+```text
+✅ Product Authenticity & Seller Verification
+```
+
+```text
+👤 Account & Access
+```
+
+```text
+🔐 Privacy & Security
+```
+
+```text
+🗑️ Data Deletion
+```
+
+```text
+🙋 Talk to a Human
+```
+
+```text
+🌍 International Shipping
+```
+
+```text
+🏬 Pickup Options
+```
+
+```text
+📏 Size Guide
+```
+
+```text
+🛑 Order Cancellation
+```
+
+```text
+🏠 Change Delivery Address
+```
+
+```text
+🔔 Out‑of‑Stock Alerts
+```
+
+```text
+💰 Delivery Fee Estimate
+```
+
+### 11.6 Seller Flow
+
+```text
+🏪 Seller Menu
+```
+
+```text
+📦 Add New Product
+```
+
+```text
+🆘 Seller Support
+```
+
+```text
+🏦 Update Payout Account
+```
+
+```text
+📋 Your Orders
+```
+
+```text
+📊 Sales Report
+```
+
+```text
+✅ Quantity Updated
+```
+
+```text
+  Invalid Option
+```
+
+### 11.7 Seller Orders and Sales
+
+```text
+📋 Your Orders
+```
+
+```text
+📊 Sales Report
+```
+
+```text
+Detailed
+```
+
+```text
+Export
+```
+
+```text
+Back
+```
+
+### 11.8 Checkout and Payment
+
+```text
+📦 Address: Name, Phone, Address, City, State, Postal Code
+```
+
+```text
+✅ Confirm your order?
+```
+
+```text
+💳 Complete your payment
+```
+
+```text
+✅ Payment Verified!
+```
+
+```text
+  Payment verification failed
+```
+
+```text
+Payment issue
+```
+
+### 11.9 Withdrawals
+
+```text
+Withdrawal Request Received
+```
+
+```text
+Withdrawal Approved and Paid
+```
+
+```text
+Withdrawal Rejected
+```
+
+### 11.10 Onboarding
+
+```text
+🎉 Welcome to Taja!
+```
+
+```text
+❓ Frequently Asked Questions (FAQs)
+```
+
+```text
+🔗 Create Your Account
+```
+
+```text
+  Signup form unavailable
+```
+
+```text
+  Support form unavailable
+```
+
+```text
+  Error
+```
+
+### 11.11 Notes on Exactness
+
+- Static text above is copied from the live codebase or normalized to match the displayed copy.
+- Dynamic values like order ID, amount, product name, and links are inserted at runtime.
+- Some WhatsApp Flow launches send no text because the user sees a Meta form instead.
+
